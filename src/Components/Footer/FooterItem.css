@@ -1,0 +1,31 @@
+.content-footer span {
+  display: inline-flex;
+  align-items: center;
+  font-size: 20px;
+  width: 200px;
+  text-align: left;
+  word-wrap: break-word ;
+}
+
+.content-footer img {
+  padding-right: 5px;
+}
+
+.content-footer span.adress {
+  display: inline-flex;
+  align-items: center;
+  
+  font-size: 20px;
+  width: 250px;
+  text-align: left;
+  word-wrap: break-word;
+}
+
+.content-footer span.footer-networks {
+  border: 2px solid black;
+  padding: 5px 5px;
+  border-radius: 50%;
+  width: 25px;
+  margin-left: 25%;
+}
+

@@ -1,0 +1,41 @@
+.slider-container {
+   height: 150px;
+   width: 450px;
+   display: flex;
+   align-items: center;
+   margin-left: 25%;
+}
+
+.slider {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    
+}
+
+.all-items-container {
+    height: 100%;
+    display: flex;
+}
+
+.all-items-container img {
+    height: 100%;
+    min-width: 450px;
+    max-width: 450px;
+    
+}
+
+.slider-container button {
+    height: 35px;
+    border-radius: 50%;
+    background: white;
+    border:2px solid gray
+}
+
+.slider-container button:hover {
+    height: 35px;
+    border-radius: 50%;
+    background: rgba(181,184,177, 0.5);
+    border:2px solid gray;
+
+}

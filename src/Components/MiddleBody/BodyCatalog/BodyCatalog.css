@@ -1,0 +1,22 @@
+
+.catalog-container-products{
+    border: 2px solid red;
+}
+.cats-products {
+    padding: 0px 10px 10px 0px;
+    margin-bottom: 30px;
+    
+}
+
+.catalog-all h1  {
+    margin-top: auto;
+}
+
+.cats-products{
+    display: flex;
+}
+
+.element-cats-content {
+    width: 30%;
+    border: 2px solid red;
+}
