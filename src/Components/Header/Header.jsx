@@ -1,4 +1,4 @@
-import HeaderItem from "./HeaderItem";
+import HeaderItem from ".//HeaderItem"
 import BasketContainer from "./BasketContainer";
 import Button from "./Button";
 import { iconSrc } from "../data";
@@ -6,13 +6,17 @@ import Mapa from "../MiddleBody/Mapa";
 import { useState } from "react";
 import Slider from "../MiddleBody/Slider";
 
+import HeaderCatalogItem from "../Header/HeaderCatalogItem/HeaderCatalogItem";
+
+import  BodyCatalog from "../MiddleBody/BodyCatalog/BodyCatalog";
+import Footer from "../Footer/Footer";
 function onClick() {
   const h = document.querySelector(".select");
   h.classList.toggle("hidden");
   h.classList.toggle("open");
 }
 
-function Header({navActive, onChange}) {
+function Header() {
   const [baseAcive, setActive] = useState(false);
 
   function handleClick(type) {
@@ -67,18 +71,21 @@ function Header({navActive, onChange}) {
       <div className="catalog-container">
         <nav>
           <ul className="catalog">
-            <HeaderItem isActive={navActive==="catalog"} onClick={()=> onChange("catalog")}>Каталог</HeaderItem>
-            <HeaderItem isActive={navActive==="brands"} onClick={()=> onChange("brands")}>Бренды</HeaderItem>
-            <HeaderItem isActive={navActive==="delivery"} onClick={()=> onChange("delivery")}>Доставка</HeaderItem>
-            <HeaderItem isActive={navActive==="stock"} onClick={()=> onChange("stock")}>Акции</HeaderItem>
-            <HeaderItem onClick={() => handleClick(!baseAcive)} className={"catalog-items"}>
+            <HeaderCatalogItem href={"/catalog"}>Каталог</HeaderCatalogItem>
+            <HeaderCatalogItem href={"/brands"}>Бренды</HeaderCatalogItem>
+            <HeaderCatalogItem>Доставка</HeaderCatalogItem>
+            <HeaderCatalogItem >Акции</HeaderCatalogItem>
+            <HeaderCatalogItem onClick={() => handleClick(!baseAcive)} className={"catalog-items"}>
               Наши магазины
-            </HeaderItem>
+            </HeaderCatalogItem>
           </ul>
         </nav>
       </div>
       {baseAcive ? (<Mapa />) : (null)}
 
+    
+
+      
       
     </div>
   );

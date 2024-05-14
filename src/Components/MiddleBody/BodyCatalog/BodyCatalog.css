@@ -1,10 +1,14 @@
 
 .catalog-container-products{
     border: 2px solid red;
+    
 }
 .cats-products {
     padding: 0px 10px 10px 0px;
     margin-bottom: 30px;
+    display: flex;
+    width: 350px;
+    
     
 }
 
@@ -12,11 +16,35 @@
     margin-top: auto;
 }
 
-.cats-products{
-    display: flex;
+
+
+.element-content {
+   
+    border: 2px solid red;
+    
+ 
 }
 
-.element-cats-content {
-    width: 30%;
-    border: 2px solid red;
+ul li{
+    display: inline;
+    
+}
+
+.element-content ul  {
+    word-break: break-all;
+    overflow-wrap: break-word;
+    
+   
+}
+
+.catalog-products {
+    display: flex;
+    flex-wrap: wrap;
+    
+}
+
+.element-content {
+    flex-grow: 1;
+    
+    min-width: 250px;
 }

@@ -1,6 +1,8 @@
+import "../ContentProducts/ContentProducts.css"
+
 function ContentProducts({children, href}){
     return(
-      <li><a href={"/hh"+"/"+href+"/"} >{children + "00"}</a></li>  
+      <li><a href={href} >{children}</a></li>  
     )
 }
 

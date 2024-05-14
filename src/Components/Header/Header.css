@@ -121,9 +121,9 @@ nav ul li.catalog-items:active {
   color: white;
 }
 nav ul {
-  margin-left: -42px;
+  
   border: 2px solid blue;
-  margin-top: 8px;
+  
   width: 70%;
   display: flex;
 }
