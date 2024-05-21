@@ -1,0 +1,19 @@
+  .checkboxes-brands label {
+    display: block;
+  }
+
+  .checkboxes-brands label:hover {
+    background-color: #1e90ff;
+  }
+
+  .checkboxes-type-feed label {
+    display: block;
+  }
+  
+  .checkboxes-type-feed label:hover {
+    background-color: #1e90ff;
+  } 
+
+  .checkboxes-country label {
+    display: block;
+  }

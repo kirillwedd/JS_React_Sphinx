@@ -46,8 +46,6 @@ function CategoryProduct() {
     })
   };
 
-
-
   return (
     <div className="wrapper">
       <header>
@@ -56,12 +54,12 @@ function CategoryProduct() {
       </header>
       <div className="price-input">
        <div className="field">
-        <span>Min</span>
+        <span>Мин</span>
         <input type="number" className="input-min" value={minValue}/>
        </div>
        <div className="separator">-</div>
        <div className="field">
-        <span>Max</span>
+        <span>Макс</span>
         <input type="text" className="input-max"   step={1} value={minValue2} />
        </div>
       </div>
@@ -73,6 +71,7 @@ function CategoryProduct() {
         <input type="range" className="range-max" min={0} max={10000} step={1} value={minValue2} onChange={onChangeHandlerRange2} />
       </div>
       <BrandsSelect></BrandsSelect>
+     
     </div>
   );
 }

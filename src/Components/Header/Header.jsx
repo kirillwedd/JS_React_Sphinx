@@ -21,6 +21,7 @@ function Header() {
 
   function handleClick(type) {
     setActive(type);
+    
   }
 
   return (

@@ -1,5 +1,5 @@
 .multiselect {
-    width: 200px;
+    width: 400px;
   }
   
   .selectBox {
@@ -9,6 +9,9 @@
   .selectBox select {
     width: 100%;
     font-weight: bold;
+    height: 45px;
+    border-left: none;
+    border-right: none;
   }
   
   .overSelect {
@@ -19,15 +22,3 @@
     bottom: 0;
   }
   
-  #checkboxes {
-    display: none;
-    border: 1px #dadada solid;
-  }
-  
-  #checkboxes label {
-    display: block;
-  }
-  
-  #checkboxes label:hover {
-    background-color: #1e90ff;
-  }
