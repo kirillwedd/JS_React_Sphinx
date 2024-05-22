@@ -22,3 +22,26 @@
     bottom: 0;
   }
   
+  .button-filters{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .button-filters input[type=button] {
+    all: unset;
+    padding: 15px 15px;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    background: SaddleBrown ;
+  }
+
+  .button-filters input[type=button]:first-of-type {
+    all: unset;
+    border-bottom: 4px dotted gray;
+    cursor: pointer;
+  }
+
+  
