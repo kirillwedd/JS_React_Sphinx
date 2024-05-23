@@ -106,3 +106,11 @@ input[type="range"]::-moz-range-thumb {
     -moz-appearance: none;
     background: #17A2B8;
 }
+
+.main-panel-product {
+    display: flex;
+}
+
+.panel-product {
+    margin-top: 5px;
+}

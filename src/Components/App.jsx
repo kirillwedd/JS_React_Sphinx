@@ -27,7 +27,7 @@ function App() {
         <Route path="/mouse" element={<>uuuuiuhuhh</>}/>
         <Route path="/parrot" element={<>uuuuiuhuhh</>}/>
       </Routes>
-      
+     
       </div>
 
       <footer>
