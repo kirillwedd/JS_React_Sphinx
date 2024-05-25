@@ -1,6 +1,20 @@
 import { useState } from "react";
 import "../CategoryProduct/CategoryProduct.css";
 import BrandsSelect from "./BrandsSelect/BrandsSelect";
+import { dataCardProduct } from "../../../data";
+import CardProduct from "./CardProduct/CardProduct";
+
+
+const ItemsCardProduct = dataCardProduct.map((item, index)=>(
+<CardProduct srcImage={item.ImageContent}
+             title={item.Title}
+             money={item.money}
+             descriptionProduct={item.description}
+             weightProduct={item.weight}
+             key={index}>
+
+</CardProduct>
+))
 
 function CategoryProduct() {
   const [minValue, setValue] = useState(2500);
@@ -89,7 +103,7 @@ function CategoryProduct() {
 
       <div className="panel-product">
         <div className="row">
-          
+          {ItemsCardProduct}
         </div>
       </div>
     </div>

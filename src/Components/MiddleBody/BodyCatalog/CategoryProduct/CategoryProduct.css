@@ -1,3 +1,9 @@
+.main-panel-product {
+    display: grid;
+    grid-template-columns: 24% 76%;
+   
+}
+
 .wrapper{
     width: 400px;
     background: #fff;
@@ -107,10 +113,6 @@ input[type="range"]::-moz-range-thumb {
     background: #17A2B8;
 }
 
-.main-panel-product {
-    display: flex;
-}
-
-.panel-product {
-    margin-top: 5px;
+.row {
+  display: flex;
 }
