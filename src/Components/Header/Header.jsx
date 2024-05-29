@@ -1,12 +1,13 @@
-import HeaderItem from ".//HeaderItem"
+import HeaderItem from "./HeaderItem"
 import BasketContainer from "./BasketContainer";
 import Button from "./Button";
-import { iconSrc } from "../data";
+import { country, iconSrc } from "../data";
 import Mapa from "../MiddleBody/Mapa";
-import { useState } from "react";
+import { useState, createContext, useContext } from "react";
 import Slider from "../MiddleBody/Slider";
-
-import HeaderCatalogItem from "../Header/HeaderCatalogItem/HeaderCatalogItem";
+import { dataCardProduct } from "../data";
+import HeaderCatalogItem from "./HeaderCatalogItem/HeaderCatalogItem";
+import { create } from "zustand";
 
 import  BodyCatalog from "../MiddleBody/BodyCatalog/BodyCatalog";
 import Footer from "../Footer/Footer";
@@ -16,14 +17,33 @@ function onClick() {
   h.classList.toggle("open");
 }
 
+
+
+export const useFilter = create((set) => ({
+  values: '', // начальное значение
+  setValues: (newValue) => set({ values: newValue }), // функция для установки нового значения
+}));
+
+
+
+
+ 
+
 function Header() {
   const [baseAcive, setActive] = useState(false);
+  const [value, setValue]=useState('');
+
+  const values = useFilter((state) => state.values);
+  const setValues = useFilter((state) => state.setValues);
+
+
+
 
   function handleClick(type) {
     setActive(type);
-    
+    console.log(values)
   }
-
+  
   return (
     <div className="header">
       <div className="top-panel-header-container">
@@ -59,7 +79,7 @@ function Header() {
           alt="Сфинкс"
         />
 
-        <input type="text" placeholder="Поиск" name="search" id="search" />
+        <input type="text" placeholder="Поиск" name="search" value={values} onChange={(event)=>setValues(event.target.value)} id="search" />
         <div className="search-btn">
           <button>
             <img src="public\search.svg" alt="Найти" />
@@ -74,7 +94,7 @@ function Header() {
           <ul className="catalog">
             <HeaderCatalogItem href={"/catalog"}>Каталог</HeaderCatalogItem>
             <HeaderCatalogItem href={"/brands"}>Бренды</HeaderCatalogItem>
-            <HeaderCatalogItem>Доставка</HeaderCatalogItem>
+            <HeaderCatalogItem >Доставка</HeaderCatalogItem>
             <HeaderCatalogItem >Акции</HeaderCatalogItem>
             <HeaderCatalogItem onClick={() => handleClick(!baseAcive)} className={"catalog-items"}>
               Наши магазины
@@ -90,6 +110,11 @@ function Header() {
       
     </div>
   );
+  
 }
 
 export default Header;
+
+
+
+

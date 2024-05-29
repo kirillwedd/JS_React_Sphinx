@@ -57,8 +57,7 @@ image {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #8bc34a;
-    
+    background-color: #8bc34a;    
     transition: background-color .2s , border-radius 2s;
     color: white;
     border-radius: 10px;
@@ -75,3 +74,12 @@ image {
     font-weight: 700;
 }
 
+.color-changing-button {
+    transition: background-color 0.5s ease; 
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+
+ .info h3 {
+   text-align: center;
+  }

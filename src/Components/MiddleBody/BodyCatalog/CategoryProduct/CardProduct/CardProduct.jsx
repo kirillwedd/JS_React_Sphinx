@@ -36,7 +36,7 @@ function CardProduct({srcImage, title, money, weightProduct, descriptionProduct}
             </div>
             <div className="price-cart">
             <span className="price">{money}<small>₽</small></span>
-            <button style={{background: buttonColor, borderRadius: buttonPadding}} onClick={changeColor} className="add-to-cart"><ion-icon name="cart"></ion-icon></button>
+            <button  style={{background: buttonColor, borderRadius: buttonPadding}} onClick={changeColor} className="add-to-cart"><ion-icon name="cart"></ion-icon></button>
             </div>
         </div>
     </div>

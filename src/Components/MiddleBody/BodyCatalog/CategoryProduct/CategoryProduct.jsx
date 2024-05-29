@@ -1,22 +1,39 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import "../CategoryProduct/CategoryProduct.css";
 import BrandsSelect from "./BrandsSelect/BrandsSelect";
 import { dataCardProduct } from "../../../data";
 import CardProduct from "./CardProduct/CardProduct";
+import { useFilter } from "../../../Header/Header";
 
 
-const ItemsCardProduct = dataCardProduct.map((item, index)=>(
-<CardProduct srcImage={item.ImageContent}
-             title={item.Title}
-             money={item.money}
-             descriptionProduct={item.description}
-             weightProduct={item.weight}
-             key={index}>
 
-</CardProduct>
-))
+
+
+
+
+
 
 function CategoryProduct() {
+  const{values}=useFilter();
+
+  const filtered=dataCardProduct.filter(dataCard=>{
+    return dataCard.Title.toLowerCase().includes(values.toLowerCase())
+  })
+  
+  const ItemsCardProduct = filtered.map((item, index) => (
+    <CardProduct
+      srcImage={item.ImageContent}
+      title={item.Title}
+      money={item.money}
+      descriptionProduct={item.description}
+      weightProduct={item.weight}
+      key={index}
+    ></CardProduct>
+  ));
+ 
+  
+
+
   const [minValue, setValue] = useState(2500);
   const [minLeft, setLeft] = useState(25);
   const [minRight, setRight] = useState(25);
@@ -102,9 +119,7 @@ function CategoryProduct() {
       </div>
 
       <div className="panel-product">
-        <div className="row">
-          {ItemsCardProduct}
-        </div>
+        <div className="row">{ItemsCardProduct}</div>
       </div>
     </div>
   );

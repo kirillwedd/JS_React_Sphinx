@@ -9,11 +9,8 @@ import BodyCatalog from "./MiddleBody/BodyCatalog/BodyCatalog";
 import CategoryProduct from "./MiddleBody/BodyCatalog/CategoryProduct/CategoryProduct";
 function App() {
  
-  
-  function invisibility(){
-    <Slider style={{visibility:"hidden"}}/>
-  }
 
+  
   return ( 
    <div className="page">
      <Header  />
