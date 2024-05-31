@@ -2,34 +2,116 @@ import { json } from "react-router-dom";
 import "../BrandsSelect/BrandsSelect.css";
 
 import Checkbox from "./Checkbox/Checkbox";
-import { country } from "../../../../data";
+import { country, brands, feed } from "../../../../data";
 import { useRef, useEffect, useState } from "react";
+import { create } from "zustand";
+
+
+export const useFilterCheckBox=create((set)=>(
+{
+  countries:[],
+  brandsArray:[],
+  feeds:[]
+}))
 
 function BrandsSelect() {
   const [checkboxes, setCheckboxes] = useState(
     Array(country.length).fill(false)
   );
 
-  const handleCheckboxChange = (index) => {
-    const newCheckboxes = [...checkboxes];
-    newCheckboxes[index] = !newCheckboxes[index];
+  const [checkboxesBrands, setCheckboxesBrands] = useState(
+    Array(brands.length).fill(false)
+  );
 
-    setCheckboxes(newCheckboxes);
-  };
+  const [checkboxesFeed, setCheckboxesFeed] = useState(
+    Array(feed.length).fill(false)
+  );
+
+  const{countries, brandsArray, feeds}=useFilterCheckBox();
 
   const listItemsCountry = country.map((person, index) => (
-    <Checkbox
+    <Checkbox 
       checked={checkboxes[index]}
       key={index}
-      onChange={() => handleCheckboxChange(index)}
+      onChange={() => handleCheckboxChange(index, "country") }
     >
       {person}
     </Checkbox>
   ));
 
+  const listItemsBrands = brands.map((brands, index) => (
+    <Checkbox 
+      checked={checkboxesBrands[index]}
+      key={index}
+      onChange={() => handleCheckboxChange(index, "brands") }>
+      {brands}
+    </Checkbox>
+  ));
+
+  const listItemsFeeds = feed.map((feeds, index) => (
+    <Checkbox 
+      checked={checkboxesFeed[index]}
+      key={index}
+      onChange={() => handleCheckboxChange(index, "feed") }>
+      {feeds}
+    </Checkbox>
+  ));
+
+
+
   const handleRemoveChecked = () => {
     const newCheckboxes = checkboxes.map(() => false);
     setCheckboxes(newCheckboxes);
+  };
+
+  
+  const handleCheckboxChange = (index, filterType) => {
+
+    switch(filterType){
+      case "country":
+    const newCheckboxes = [...checkboxes];
+    newCheckboxes[index] = !newCheckboxes[index];
+    setCheckboxes(newCheckboxes);
+    if(!countries.includes(country[index]))
+      {
+        countries.push(country[index])
+      }
+      else{
+        countries.splice(countries.indexOf(country[index]),1)
+      }
+      console.log(countries)
+      break;
+
+      case "brands":
+        const newCheckboxesBrands = [...checkboxesBrands];
+        newCheckboxesBrands[index] = !newCheckboxesBrands[index];
+        setCheckboxesBrands(newCheckboxesBrands);
+        if(!brandsArray.includes(brands[index]))
+          {
+            brandsArray.push(brands[index])
+          }
+          else{
+            brandsArray.splice(brandsArray.indexOf(brands[index]),1)
+          }
+          console.log(brandsArray)
+      break;
+
+      case "feed":
+        const newCheckboxesFeed = [...checkboxesFeed];
+        newCheckboxesFeed[index] = !newCheckboxesFeed[index];
+        setCheckboxesFeed(newCheckboxesFeed);
+        if(!feeds.includes(feed[index]))
+          {
+            feeds.push(feed[index])
+          }
+          else{
+            feeds.splice(feeds.indexOf(feed[index]),1)
+          }
+          console.log(feeds)
+      break;
+    }
+
+  
   };
 
   const [bool, setBool] = useState(false);
@@ -78,10 +160,7 @@ function BrandsSelect() {
         className="checkboxes-brands"
         style={{ display: `${inputСondition.brands}` }}
       >
-        <Checkbox fors={"jhkjk"}>Royal Canin</Checkbox>
-        <Checkbox fors={"jhkjk"}>Hill's</Checkbox>
-        <Checkbox fors={"jhkjk"}>Tommy</Checkbox>
-        <Checkbox fors={"jhkjk"}>Дарэлл</Checkbox>
+       {listItemsBrands}
       </div>
 
       <div class="selectBox" onClick={() => showCheckboxTypeFeed(!bool)}>
@@ -94,8 +173,7 @@ function BrandsSelect() {
         className="checkboxes-type-feed"
         style={{ display: `${inputСondition.typeFeed}` }}
       >
-        <Checkbox fors={"jhkjk"}>Сухой</Checkbox>
-        <Checkbox fors={"jhkjk"}>Влажный</Checkbox>
+       {listItemsFeeds}
       </div>
 
       <div class="selectBox" onClick={() => showCheckboxCountry(!bool)}>
@@ -112,7 +190,7 @@ function BrandsSelect() {
       </div>
       <div className="button-filters">
         <input type="button" onClick={handleRemoveChecked} value="Сбросить" />
-        <input type="button" value="Применить" />
+        <input type="button"   value="Применить" />
       </div>
     </div>
   );

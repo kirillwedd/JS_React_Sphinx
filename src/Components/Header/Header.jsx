@@ -41,7 +41,6 @@ function Header() {
 
   function handleClick(type) {
     setActive(type);
-    console.log(values)
   }
   
   return (

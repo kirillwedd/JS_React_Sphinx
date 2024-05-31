@@ -17,3 +17,7 @@
   .checkboxes-country label {
     display: block;
   }
+
+  .checkboxes-country label:hover {
+    background-color: #1e90ff;
+  }
