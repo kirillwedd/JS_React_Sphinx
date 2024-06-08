@@ -1,48 +1,79 @@
-import { useState, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import "../CategoryProduct/CategoryProduct.css";
 import BrandsSelect from "./BrandsSelect/BrandsSelect";
-import { dataCardProduct } from "../../../data";
+import { country, dataCardProduct } from "../../../data";
 import CardProduct from "./CardProduct/CardProduct";
 import { useFilter } from "../../../Header/Header";
+import { create } from "zustand";
+import { useFilterCheckBox } from "./BrandsSelect/BrandsSelect";
+import Basket from "./Basket/Basket";
 
 
-
-
-
-
-
-
+export const useFilterPrice=create((set)=>({
+  minPrice:Number(""),
+  maxPrice:Number(""),
+  setMinPrice:(state)=>set({minPrice: state}),
+  setMaxPrice:(state)=>set({maxPrice: state})
+}))
 
 function CategoryProduct() {
-  const{values}=useFilter();
+  const {values}=useFilter();
+  const {countries, brandsArray, feeds}=useFilterCheckBox()
 
-  const filtered=dataCardProduct.filter(dataCard=>{
-    return dataCard.Title.toLowerCase().includes(values.toLowerCase())
-  })
+  const minPrice = useFilterPrice((state) => state.minPrice);
+  const setMinPrice = useFilterPrice((state) => state.setMinPrice);
+  const maxPrice = useFilterPrice((state) => state.maxPrice);
+  const setMaxPrice = useFilterPrice((state) => state.setMaxPrice);
+
+  const [minValue, setValue] = useState(0);
+  const [minLeft, setLeft] = useState(0);
+  const [minRight, setRight] = useState(25);
+  const [maxValue, setMaxValue] = useState(7500);
   
-  const ItemsCardProduct = filtered.map((item, index) => (
-    <CardProduct
-      srcImage={item.ImageContent}
-      title={item.Title}
-      money={item.money}
-      descriptionProduct={item.description}
-      weightProduct={item.weight}
-      key={index}
-    ></CardProduct>
-  ));
+
+  useEffect(()=>{
+    setMinPrice(minValue)
+    setMaxPrice(maxValue)
+ 
+  }, [minValue, minPrice, maxValue, maxPrice])
+;
+
  
   
 
+const filtered = dataCardProduct.filter((dataCard) =>{
+  let titleFiltered = true,
+      priceFiltered = true,
+  countriesFiltered = true;
 
-  const [minValue, setValue] = useState(2500);
-  const [minLeft, setLeft] = useState(25);
-  const [minRight, setRight] = useState(25);
-  const [minValue2, setValue2] = useState(7500);
+if (values) {
+ titleFiltered = dataCard.Title.toLowerCase().includes(values.toLowerCase());
+}
+
+if (minPrice && maxPrice) {
+priceFiltered = dataCard.money >= minPrice && dataCard.money <= maxPrice;
+}
+
+if (countries.length > 0) {
+  countriesFiltered = countries.includes(dataCard.country);
+}
+
+return titleFiltered &&priceFiltered && countriesFiltered;
+});
+  
+  const ItemsCardProduct = filtered.map((product, index) => (
+    <CardProduct product={product} key={index}>
+
+    </CardProduct>
+    
+  ));
   // Сделать состояние специальное для left right
 
   const onChangeHandlerRange1 = (event) => {
-    if (minValue.valueOf() < minValue2.valueOf()) {
-      setValue(event.target.value);
+    if (event.target.value < maxValue) {
+      setValue(event.target.value)
+
+       
     } else {
       setValue(2500);
     }
@@ -53,15 +84,16 @@ function CategoryProduct() {
     });
   };
 
+
   const onChangeHandlerRange2 = (event) => {
-    if (minValue2.valueOf() > minValue.valueOf()) {
-      setValue2(event.target.value);
+    if (maxValue.valueOf() > minValue.valueOf()) {
+      setMaxValue(event.target.value);
     } else {
-      setValue2(7500);
+      setMaxValue(7500);
     }
 
     setRight(() => {
-      const progressRight = 100 - minValue2 / 100;
+      const progressRight = 100 - maxValue / 100;
       return progressRight;
     });
   };
@@ -85,7 +117,7 @@ function CategoryProduct() {
               type="text"
               className="input-max"
               step={1}
-              value={minValue2}
+              value={maxValue}
             />
           </div>
         </div>
@@ -111,7 +143,7 @@ function CategoryProduct() {
             min={0}
             max={10000}
             step={1}
-            value={minValue2}
+            value={maxValue}
             onChange={onChangeHandlerRange2}
           />
         </div>
@@ -121,6 +153,7 @@ function CategoryProduct() {
       <div className="panel-product">
         <div className="row">{ItemsCardProduct}</div>
       </div>
+      
     </div>
   );
 }

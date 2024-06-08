@@ -2,7 +2,7 @@ import { json } from "react-router-dom";
 import "../BrandsSelect/BrandsSelect.css";
 
 import Checkbox from "./Checkbox/Checkbox";
-import { country, brands, feed } from "../../../../data";
+import { country, brands, feed, dataCardProduct } from "../../../../data";
 import { useRef, useEffect, useState } from "react";
 import { create } from "zustand";
 
@@ -27,12 +27,19 @@ function BrandsSelect() {
     Array(feed.length).fill(false)
   );
 
-  const{countries, brandsArray, feeds}=useFilterCheckBox();
+  const [countriesState, setCountries]=useState();
+  const [brandsState, setBrands]=useState();
+  const [feedState, setFeed]=useState()
+
+  const{countries }=useFilterCheckBox();
+  const{brandsArray}=useFilterCheckBox();
+  const{feeds}=useFilterCheckBox();
 
   const listItemsCountry = country.map((person, index) => (
     <Checkbox 
       checked={checkboxes[index]}
       key={index}
+     
       onChange={() => handleCheckboxChange(index, "country") }
     >
       {person}
@@ -69,12 +76,15 @@ function BrandsSelect() {
 
     switch(filterType){
       case "country":
+  
     const newCheckboxes = [...checkboxes];
     newCheckboxes[index] = !newCheckboxes[index];
     setCheckboxes(newCheckboxes);
+    
     if(!countries.includes(country[index]))
       {
         countries.push(country[index])
+        console.log(newCheckboxes)
       }
       else{
         countries.splice(countries.indexOf(country[index]),1)
@@ -190,7 +200,7 @@ function BrandsSelect() {
       </div>
       <div className="button-filters">
         <input type="button" onClick={handleRemoveChecked} value="Сбросить" />
-        <input type="button"   value="Применить" />
+        {/* <input type="button"   value="Применить" /> */}
       </div>
     </div>
   );

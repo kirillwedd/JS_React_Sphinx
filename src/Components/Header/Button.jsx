@@ -1,6 +1,6 @@
-function Button({src} ) {
+function Button({src, href, title} ) {
     return(
-       <a><img  src={src} style={{ height:"25px"}}/></a>
+       <a href={href} title={title}><img  src={src} style={{ height:"25px"}}/></a>
     );
 }
 

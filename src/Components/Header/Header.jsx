@@ -31,7 +31,7 @@ export const useFilter = create((set) => ({
 
 function Header() {
   const [baseAcive, setActive] = useState(false);
-  const [value, setValue]=useState('');
+
 
   const values = useFilter((state) => state.values);
   const setValues = useFilter((state) => state.setValues);

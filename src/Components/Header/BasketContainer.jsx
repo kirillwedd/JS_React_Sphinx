@@ -1,9 +1,16 @@
 import Button from "./Button";
 import { iconSrc } from "../data";
 
+const urlAdress=[
+     "/basket", 
+     "/contrast",
+     "",
+     "/favorites"
+]
+
 function BasketContainer() {
  return(
-      iconSrc.map((item, index)=>(<Button src={item} key={index}></Button>)
+      iconSrc.map((item, index)=>(<Button href={urlAdress[index]} title={urlAdress[index]}  src={item}  key={index}></Button>)
  ));
   
 }

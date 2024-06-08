@@ -3,14 +3,18 @@ import "./App.css";
 import "./Header/Header.css";
 import Footer from "./Footer/Footer";
 import Slider from "./MiddleBody/Slider";
-import { Routes, Route, Link } from "react-router-dom";
-
 import BodyCatalog from "./MiddleBody/BodyCatalog/BodyCatalog";
 import CategoryProduct from "./MiddleBody/BodyCatalog/CategoryProduct/CategoryProduct";
+import Basket from "./MiddleBody/BodyCatalog/CategoryProduct/Basket/Basket";
+
+import { Routes, Route, Link } from "react-router-dom";
+import { useAddProductBasket } from "./MiddleBody/BodyCatalog/CategoryProduct/CardProduct/CardProduct";
+
+
 function App() {
  
-
-  
+const {productBasket}=useAddProductBasket()
+ 
   return ( 
    <div className="page">
      <Header  />
@@ -23,6 +27,7 @@ function App() {
         <Route path="/dog" element={<>uuuuiuhuhh</>}/>
         <Route path="/mouse" element={<>uuuuiuhuhh</>}/>
         <Route path="/parrot" element={<>uuuuiuhuhh</>}/>
+        <Route path="/basket" element={<Basket cardProduct={productBasket}/>}/>
       </Routes>
      
       </div>

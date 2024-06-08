@@ -1,0 +1,8 @@
+.my-basket-container {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+}
+
+.basket-title {
+    font-size: 25px;
+}
