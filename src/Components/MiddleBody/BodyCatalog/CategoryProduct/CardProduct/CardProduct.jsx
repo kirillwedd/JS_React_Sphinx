@@ -9,31 +9,28 @@ import { useFilter } from "../../../../Header/Header";
 
 export const useAddProductBasket=create((set)=>(
     {
-        productBasketArr:[],
-        productBasket: JSON.parse(localStorage.getItem('productBasketArr')) || [],
-        addProductBasket: newProduct => set(state=> {
-            const updateProductBasket=[...state.productBasketArr, newProduct];
-            localStorage.setItem('productBasketArr', JSON.stringify(updateProductBasket))
-            return { productBasket: updateProductBasket}
+       
+        productBasket: JSON.parse(localStorage.getItem('productBasket')) || [],
+        addProductBasket: (newProduct) => set({
+        productBasketArr: localStorage.setItem('productBasket', JSON.stringify(newProduct))
         }),
         removeProductBasket: productBasketId => set((state)=>{
             const updateProductBasket= state.productBasket.filter(myProduct=>myProduct !==productBasketId);
-            localStorage.setItem('productBasketArr', JSON.stringify(updateProductBasket))
+            localStorage.setItem('productBasket', JSON.stringify(updateProductBasket))
             return { productBasket: updateProductBasket}
         }),
         
     }))
 
 
-function CardProduct({product})
+function CardProduct({product, productInCart})
 {
     const [buttonColor, setButtonColor] = useState('#8bc34a');
     const [buttonPadding, setButtonPadding]=useState('10px');
-    const [cardProduct, setCardProduct]=useState([])
     const {ImageContent, Title, money, weight, description}=product
     const productBasket=useAddProductBasket((state)=>state.productBasket);
     const addProductBasket=useAddProductBasket((state)=>state.addProductBasket)
-    const productBasketArr=useAddProductBasket((state)=>state.productBasketArr)
+  
 
 
 
@@ -42,11 +39,17 @@ function CardProduct({product})
     const newMargin= buttonPadding==="10px"?"25px": "10px"
     setButtonColor(newColor);
     setButtonPadding(newMargin);
-    productBasketArr.push(product)
-    addProductBasket(productBasketArr)
+    productBasket.push(product)
+    addProductBasket(productBasket)
     console.log(productBasket)
+
+    
+
+    
     
   };
+
+  
 
 
     return(
@@ -70,7 +73,10 @@ function CardProduct({product})
             </div>
             <div className="price-cart">
             <span className="price">{money}<small>₽</small></span>
-            <button  style={{background: buttonColor, borderRadius: buttonPadding}} product={product} onClick={changeColor} className="add-to-cart"><ion-icon name="cart"></ion-icon></button>
+            { productInCart ?
+            "Товар в корзине"
+            :<button  style={{background: buttonColor, borderRadius: buttonPadding}} product={product} onClick={changeColor} className="add-to-cart"><ion-icon name="cart"></ion-icon></button>
+            }
             </div>
             
         </div>

@@ -6,3 +6,42 @@
 .basket-title {
     font-size: 25px;
 }
+
+.product-basket {
+    display: flex;
+    margin: 10px 0px;
+}
+
+.title-product-basket{
+    font-size: 16px;
+}
+
+.product-information-basket{
+    display: flex;
+    flex-direction: column;
+    min-width: 580px;
+    border: 2px solid red;
+    height: 100px;
+}
+
+.money-product-basket {
+ font-weight: bold;
+ font-size: 16px;
+ margin-left: auto;
+ border: 2px solid red ;
+ padding: 5px 5px;
+}
+
+.count-product-basket {
+    display: flex;
+    margin-left: auto ;
+    width: 100px;
+    margin-top: 2px;
+    justify-content: space-between;
+}
+
+.count-product-basket * {
+    border: 2px solid red;
+    font-size: 16px;
+    padding: 0px 5px;
+}

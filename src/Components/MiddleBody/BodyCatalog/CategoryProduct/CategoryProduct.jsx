@@ -7,7 +7,7 @@ import { useFilter } from "../../../Header/Header";
 import { create } from "zustand";
 import { useFilterCheckBox } from "./BrandsSelect/BrandsSelect";
 import Basket from "./Basket/Basket";
-
+import { useAddProductBasket } from "./CardProduct/CardProduct";
 
 export const useFilterPrice=create((set)=>({
   minPrice:Number(""),
@@ -18,7 +18,8 @@ export const useFilterPrice=create((set)=>({
 
 function CategoryProduct() {
   const {values}=useFilter();
-  const {countries, brandsArray, feeds}=useFilterCheckBox()
+  const {countries, brandsArray, feeds}=useFilterCheckBox();
+  const {productBasket}=useAddProductBasket();
 
   const minPrice = useFilterPrice((state) => state.minPrice);
   const setMinPrice = useFilterPrice((state) => state.setMinPrice);
@@ -62,7 +63,7 @@ return titleFiltered &&priceFiltered && countriesFiltered;
 });
   
   const ItemsCardProduct = filtered.map((product, index) => (
-    <CardProduct product={product} key={index}>
+    <CardProduct  product={product} key={index} productInCart={productBasket.some(item=>item.Title==product.Title)}>
 
     </CardProduct>
     
