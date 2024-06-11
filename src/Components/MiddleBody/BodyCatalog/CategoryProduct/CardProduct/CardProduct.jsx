@@ -25,8 +25,7 @@ export const useAddProductBasket=create((set)=>(
 
 function CardProduct({product, productInCart})
 {
-    const [buttonColor, setButtonColor] = useState('#8bc34a');
-    const [buttonPadding, setButtonPadding]=useState('10px');
+ 
     const {ImageContent, Title, money, weight, description}=product
     const productBasket=useAddProductBasket((state)=>state.productBasket);
     const addProductBasket=useAddProductBasket((state)=>state.addProductBasket)
@@ -35,18 +34,17 @@ function CardProduct({product, productInCart})
 
 
   const changeColor = () => {
-    const newColor = buttonColor === '#8bc34a' ? 'red' : '#8bc34a';
-    const newMargin= buttonPadding==="10px"?"25px": "10px"
-    setButtonColor(newColor);
-    setButtonPadding(newMargin);
-    productBasket.push(product)
-    addProductBasket(productBasket)
-    console.log(productBasket)
 
-    
+   
+    productBasket.push(product);
+    addProductBasket(productBasket);
+    const updatedData=productBasket.map((item)=> ({
+            ...item,
+            myQuantity: item.myQuantity ? item.myQuantity : 1
+    }));
 
-    
-    
+    addProductBasket(updatedData)
+    console.log(productBasket)    
   };
 
   
@@ -75,7 +73,7 @@ function CardProduct({product, productInCart})
             <span className="price">{money}<small>₽</small></span>
             { productInCart ?
             "Товар в корзине"
-            :<button  style={{background: buttonColor, borderRadius: buttonPadding}} product={product} onClick={changeColor} className="add-to-cart"><ion-icon name="cart"></ion-icon></button>
+            :<button  product={product} onClick={changeColor}  className="add-to-cart"><ion-icon name="cart"></ion-icon></button>
             }
             </div>
             

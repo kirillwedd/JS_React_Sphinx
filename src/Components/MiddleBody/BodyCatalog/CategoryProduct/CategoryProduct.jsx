@@ -63,7 +63,7 @@ return titleFiltered &&priceFiltered && countriesFiltered;
 });
   
   const ItemsCardProduct = filtered.map((product, index) => (
-    <CardProduct  product={product} key={index} productInCart={productBasket.some(item=>item.Title==product.Title)}>
+    <CardProduct   product={product} key={index} productInCart={productBasket.some(item=>item.Title==product.Title)}>
 
     </CardProduct>
     
