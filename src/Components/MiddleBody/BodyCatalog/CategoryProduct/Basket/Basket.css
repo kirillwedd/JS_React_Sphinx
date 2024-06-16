@@ -53,3 +53,31 @@
     font-size: 16px;
     padding: 0px 5px;
 }
+
+.lack-product  {
+    margin: 20% 0%;
+    text-align: center;
+}
+
+.lack-product div *,
+.lack-product div {
+    font-size: 25px;
+}
+
+.lack-product div a {
+    display: inline-block;
+    background: red;
+    padding: 15px 15px;
+    text-decoration: none;
+    color: black;
+}
+
+.lack-product div a:hover {
+font-weight: 700;
+}
+
+.basket-products hr {
+    width: 700px;
+    position: relative;
+    margin-right: 100%
+}
