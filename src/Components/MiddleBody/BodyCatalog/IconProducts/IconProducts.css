@@ -1,0 +1,9 @@
+.icon-products {
+    padding: 0px 10px;
+}
+
+.icon-products a:last-of-type {
+    cursor: pointer;
+    
+}
+
