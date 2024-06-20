@@ -11,29 +11,31 @@ export const useAddProductBasket=create((set)=>(
     {
        
         productBasket: JSON.parse(localStorage.getItem('productBasket')) || [],
+        favoriteProduct: JSON.parse(localStorage.getItem('favoriteProduct')) || [],
         addProductBasket: (newProduct) => set({
         productBasketArr: localStorage.setItem('productBasket', JSON.stringify(newProduct))
         }),
-        removeProductBasket: productBasketId => set((state)=>{
-            const updateProductBasket= state.productBasket.filter(myProduct=>myProduct !==productBasketId);
-            localStorage.setItem('productBasket', JSON.stringify(updateProductBasket))
-            return { productBasket: updateProductBasket}
-        }),
+        addFavoriteProduct: (newProduct) => set({
+            favoriteProductArr: localStorage.setItem('favoriteProduct', JSON.stringify(newProduct))
+            }),
+    
         
     }))
 
 
-function CardProduct({product, productInCart})
+function CardProduct({product, productInCart, productFavorite, indexses})
 {
  
     const {ImageContent, Title, money, weight, description}=product
-    const productBasket=useAddProductBasket((state)=>state.productBasket);
+    const {productBasket, favoriteProduct}=useAddProductBasket();
     const addProductBasket=useAddProductBasket((state)=>state.addProductBasket)
+    const addFavoriteProduct=useAddProductBasket((state)=>state.addFavoriteProduct)
+    const [isFavorite, setIsFavorite] = useState(false);
   
 
 
 
-  const changeColor = () => {
+  const BasketAdd = () => {
 
    
     productBasket.push(product);
@@ -47,9 +49,29 @@ function CardProduct({product, productInCart})
     console.log(productBasket)    
   };
 
+  const BasketFavorites=(indexses)=>{
+
+    if(isFavorite)
+    {
+        const removeFavorite = favoriteProduct.filter(
+            (product, idx) => idx !== indexses
+        );
+        addFavoriteProduct(removeFavorite)
+    }
+    else
+    {
+    favoriteProduct.push(product);
+    addFavoriteProduct(favoriteProduct);
+    const favoritesData=favoriteProduct.map((item)=>({
+    ...item,
+    favorite: true
+    }))
+    addFavoriteProduct(favoritesData);
+    }
+    setIsFavorite(prevState => !prevState);
+}
+
   
-
-
     return(
         <div className="product" style={{width:"400px", border:"2px solid red"}}>
             <div className="image">
@@ -71,10 +93,18 @@ function CardProduct({product, productInCart})
             </div>
             <div className="price-cart">
             <span className="price">{money}<small>₽</small></span>
+            <div className="context-product">
+            {productFavorite ?
+            <button className="product-favorites-1" onClick={()=>BasketFavorites(indexses)} style={{color: 'red'}} >< ion-icon name="heart"  ></ion-icon></button>
+            : <button className="product-favorites-2" onClick={()=>BasketFavorites(indexses)} ><ion-icon name="heart" className="" ></ion-icon></button>
+             }
+            
             { productInCart ?
             "Товар в корзине"
-            :<button  product={product} onClick={changeColor}  className="add-to-cart"><ion-icon name="cart"></ion-icon></button>
+            :<button  product={product} onClick={BasketAdd}  className="add-to-cart"><ion-icon name="cart"></ion-icon></button>
             }
+            </div>
+           
             </div>
             
         </div>

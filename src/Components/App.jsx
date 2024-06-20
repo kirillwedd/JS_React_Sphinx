@@ -28,6 +28,7 @@ const {productBasket}=useAddProductBasket()
         <Route path="/mouse" element={<>uuuuiuhuhh</>}/>
         <Route path="/parrot" element={<>uuuuiuhuhh</>}/>
         <Route path="/basket" element={<Basket cardProduct={productBasket}/>}/>
+        <Route path="/favorites" element={<>hhjjh</>}></Route>
       </Routes>
      
       </div>

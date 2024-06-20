@@ -23,9 +23,9 @@ function Footer(){
     
             <FooterItem src={"public/phone-footer-icon.svg"}>номер телефона</FooterItem>
             <FooterItem src={"public/phone-footer-icon.svg"}>номер телефона</FooterItem>
-            <FooterItem src={"public/mail-icon.svg"}>kirillwed23@yandex.ru</FooterItem>   
+            <FooterItem src={"public/mail-icon.svg"}>Электронная почта</FooterItem>   
             <FooterItem src={"public/clock-icon.svg"}>Ежедневно с 9-00 до 20-00</FooterItem>   
-            <FooterItem className={"adress"} src={"public/marker-icon.svg"}>с. Долгодеревенское, ул.Больничная, д.30 </FooterItem>   
+            <FooterItem className={"adress"} src={"public/marker-icon.svg"}>Адрес </FooterItem>   
         
         
         </div>

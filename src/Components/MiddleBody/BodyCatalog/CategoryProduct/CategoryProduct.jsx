@@ -19,7 +19,7 @@ export const useFilterPrice=create((set)=>({
 function CategoryProduct() {
   const {values}=useFilter();
   const {countries, brandsArray, feeds}=useFilterCheckBox();
-  const {productBasket}=useAddProductBasket();
+  const {productBasket, favoriteProduct }=useAddProductBasket();
 
   const minPrice = useFilterPrice((state) => state.minPrice);
   const setMinPrice = useFilterPrice((state) => state.setMinPrice);
@@ -63,7 +63,7 @@ return titleFiltered &&priceFiltered && countriesFiltered;
 });
   
   const ItemsCardProduct = filtered.map((product, index) => (
-    <CardProduct   product={product} key={index} productInCart={productBasket.some(item=>item.Title==product.Title)}>
+    <CardProduct   product={product} key={index} indexses={index} productFavorite={favoriteProduct.some((item=>item.Title==product.Title))} productInCart={productBasket.some(item=>item.Title==product.Title)}>
 
     </CardProduct>
     

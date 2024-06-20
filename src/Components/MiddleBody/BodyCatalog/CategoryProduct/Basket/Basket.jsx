@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "../Basket/Basket.css";
 import { useAddProductBasket } from "../CardProduct/CardProduct";
 
-function Basket({ cardProduct }) {
+function Basket() {
   const { productBasket, addProductBasket } = useAddProductBasket();
   const [removeCard, setRemoveCard] = useState(productBasket);
   const [finalPrice, setFinalPrice]=useState(null);
