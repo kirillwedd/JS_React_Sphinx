@@ -1,0 +1,44 @@
+.catalog li:nth-child(1) {
+    display: inline;
+    padding-left: 0px;
+    background: brown;
+    color: white;
+  }
+  nav ul {
+    margin-left: -42px;
+    border: 2px solid blue;
+    margin-top: 8px;
+    width: 70%;
+    display: flex;
+  }
+  
+ 
+  
+  nav ul li:nth-child(1)::before {
+    content: "";
+    background-image: url(public/IconCatalogContainer/stack.svg);
+    background-size: cover;
+    height: 15px;
+    width: 15px;
+    margin-right: 5px;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  
+  .catalog .catalog-items:hover {
+    cursor: pointer;
+  }
+  
+  .active-catalog {
+   border: 3px solid gray;
+  
+  }
+  
+  .catalog a {
+    padding: 10px;
+    text-decoration: none;
+    background: red;
+    flex-grow: 1;
+    color: black;
+  }
+  

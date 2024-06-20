@@ -1,0 +1,39 @@
+
+.content-page {
+  display: flex;
+  flex-direction: column;
+}
+
+.content-footer hr {
+  height: 2px;
+  border-color: red;
+  background-color: red;
+  width: 3%;
+  margin-right: 100%;
+}
+
+.content-footer{
+  width: 350px;
+  overflow: hidden;
+  border:2px solid red;
+  word-wrap: break-word;
+
+}
+
+.footer {
+  display: flex;
+
+}
+
+p{
+  font-size: 16.5px ;
+}
+
+.sphinx-footer {
+  margin: 0% 30%;
+}
+
+.footer .content-footer:nth-of-type(2+1n){
+  margin-bottom: auto;
+
+}

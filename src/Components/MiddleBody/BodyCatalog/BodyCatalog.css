@@ -1,0 +1,21 @@
+.catalog-products {
+    display: flex;
+    border: 2px solid red;
+    flex-wrap: wrap;
+ 
+}
+
+.cats-products {
+    width: 400px;
+    border: 2px solid red;
+    display: flex;
+}
+
+.cats-products ul li {
+    display: inline-flex;
+}
+
+.catalog-container-products {
+    width: 70%;
+}
+

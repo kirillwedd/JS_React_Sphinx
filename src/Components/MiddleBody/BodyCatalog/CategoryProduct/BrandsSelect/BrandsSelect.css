@@ -1,0 +1,47 @@
+.multiselect {
+    width: 400px;
+  }
+  
+  .selectBox {
+    position: relative;
+  }
+  
+  .selectBox select {
+    width: 100%;
+    font-weight: bold;
+    height: 45px;
+    border-left: none;
+    border-right: none;
+  }
+  
+  .overSelect {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+  }
+  
+  .button-filters{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .button-filters input[type=button] {
+    all: unset;
+    padding: 15px 15px;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    background: SaddleBrown ;
+  }
+
+  .button-filters input[type=button]:first-of-type {
+    all: unset;
+    border-bottom: 4px dotted gray;
+    cursor: pointer;
+  }
+
+  

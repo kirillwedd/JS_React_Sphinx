@@ -1,0 +1,19 @@
+.element-content li a {
+    text-decoration: none;
+    color: black;
+    margin: 0;
+    padding: 0;
+    margin-left: 5px;
+    
+}
+
+.element-content a::before {
+    content: "\2714";
+}
+
+.element-content ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+  
+}

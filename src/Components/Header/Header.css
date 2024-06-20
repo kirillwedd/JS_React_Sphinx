@@ -1,0 +1,159 @@
+.header .main-icon-header {
+  height: 75px;
+  border-right: 2px solid gray;
+  
+}
+
+.top-menu-header ul li {
+  display: inline;
+}
+
+.select li {
+  display: none;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-top: 1px solid black;
+  min-width: 150px;
+}
+
+.select li:first-child {
+  display: block;
+  border-top: 10px;
+}
+
+.select {
+  border: 1px solid black;
+  display: inline-block;
+  padding: 0;
+  border-radius: 4px;
+  position: absolute;
+  margin-top: 20px;
+  left: 210px;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.select li:hover {
+  background-color: #ddd;
+}
+
+.select li:first-child:hover {
+  background-color: transparent;
+}
+
+.select.open li {
+  display: block;
+}
+
+.top-menu-header ul {
+  margin-left: -32px;
+}
+.top-menu-header {
+  border: 2px solid red;
+  width: 70%;
+}
+.top-menu-header ul li::after {
+  content: ">";
+}
+
+.ul-li-header-shop {
+  margin-left: 10%;
+}
+
+.main-search {
+  display: flex;
+  align-items: center;
+  width: 50%;
+  border: 2px solid red;
+}
+
+.main-search a {
+  margin-left: 15px;
+}
+
+input[type="text"] {
+  flex-grow: 1;
+  border: 2px solid red;
+  padding-left: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.search-btn img {
+  height: 20px;
+}
+
+.search-btn button {
+  border-left: 2px solid gray;
+  background: transparent;
+  border-right: transparent;
+  border-top: transparent;
+  border-bottom: transparent;
+}
+
+.search-btn button:hover {
+  cursor: pointer;
+  border-radius: 50%;
+  background-color: gray;
+}
+
+nav ul li.catalog-items {
+  display: inline;
+  padding: 10px 15px;
+  background: brown;
+  color: white;
+}
+
+nav ul li.catalog-items:active {
+  display: inline;
+  padding: 10px 15px;
+  background: brown;
+  color: white;
+}
+
+
+.catalog li:nth-child(1) {
+  display: inline;
+  padding-left: 0px;
+  background: brown;
+  color: white;
+}
+nav ul {
+  
+  border: 2px solid blue;
+  
+  width: 70%;
+  display: flex;
+}
+
+.catalog-container ul li {
+  flex-grow: 1;
+}
+
+nav ul li:nth-child(1)::before {
+  content: "";
+  background-image: url(public/IconCatalogContainer/stack.svg);
+  background-size: cover;
+  height: 15px;
+  width: 15px;
+  margin-right: 5px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.catalog .catalog-items:hover {
+  cursor: pointer;
+}
+
+.active-catalog {
+ border: 3px solid gray;
+
+}
+
+
+
+
+
+
