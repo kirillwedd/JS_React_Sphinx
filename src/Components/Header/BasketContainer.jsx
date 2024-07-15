@@ -8,9 +8,16 @@ const urlAdress=[
      "/favorites"
 ]
 
+const titles=[
+     "корзина",
+     "сравнение",
+     "",
+     "избранное"
+]
+
 function BasketContainer() {
  return(
-      iconSrc.map((item, index)=>(<Button href={urlAdress[index]} title={urlAdress[index]}  src={item}  key={index}></Button>)
+      iconSrc.map((item, index)=>(<Button href={urlAdress[index]} title={titles[index]}  src={item}  key={index}></Button>)
  ));
   
 }
