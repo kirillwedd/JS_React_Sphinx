@@ -40,6 +40,9 @@ image {
 
 .rating li {
     display: inline-block;
+}
+
+.star-filled {
     color: #ffc107
 }
 
@@ -105,3 +108,11 @@ image {
   .pp {
     background-color: green;
   }
+
+  .product-favorites-1,
+  .product-favorites-2 {
+    border: none;
+    background: none;
+  }
+
+  

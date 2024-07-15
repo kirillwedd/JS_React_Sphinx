@@ -6,18 +6,22 @@ import Slider from "./MiddleBody/Slider";
 import BodyCatalog from "./MiddleBody/BodyCatalog/BodyCatalog";
 import CategoryProduct from "./MiddleBody/BodyCatalog/CategoryProduct/CategoryProduct";
 import Basket from "./MiddleBody/BodyCatalog/CategoryProduct/Basket/Basket";
+import FavoriteProduct from "./MiddleBody/BodyCatalog/CategoryProduct/FavoriteProduct/FavoriteProduct";
 
 import { Routes, Route, Link } from "react-router-dom";
 import { useAddProductBasket } from "./MiddleBody/BodyCatalog/CategoryProduct/CardProduct/CardProduct";
 
 
+
 function App() {
+
+
  
-const {productBasket}=useAddProductBasket()
+const {productBasket, favoriteProduct, addFavoriteProduct}=useAddProductBasket()
  
   return ( 
    <div className="page">
-     <Header  />
+     <Header   />
       
       <div >
       <Routes>
@@ -27,8 +31,8 @@ const {productBasket}=useAddProductBasket()
         <Route path="/dog" element={<>uuuuiuhuhh</>}/>
         <Route path="/mouse" element={<>uuuuiuhuhh</>}/>
         <Route path="/parrot" element={<>uuuuiuhuhh</>}/>
-        <Route path="/basket" element={<Basket cardProduct={productBasket}/>}/>
-        <Route path="/favorites" element={<>hhjjh</>}></Route>
+        <Route path="/basket" element={<Basket/>}/>
+        <Route path="/favorites" element={<FavoriteProduct favoriteCard={favoriteProduct} />}></Route>
       </Routes>
      
       </div>

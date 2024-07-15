@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "../CardProduct/CardProduct.css"
 import { dataCardProduct } from "../../../../data";
 import Basket from "../Basket/Basket";
@@ -23,55 +23,54 @@ export const useAddProductBasket=create((set)=>(
     }))
 
 
-function CardProduct({product, productInCart, productFavorite, indexses})
+function CardProduct({product, productInCart,  indexses})
 {
  
     const {ImageContent, Title, money, weight, description}=product
     const {productBasket, favoriteProduct}=useAddProductBasket();
     const addProductBasket=useAddProductBasket((state)=>state.addProductBasket)
     const addFavoriteProduct=useAddProductBasket((state)=>state.addFavoriteProduct)
-    const [isFavorite, setIsFavorite] = useState(false);
-  
+    const [productFavorite, setProductFavorite]=useState([]);
+    const [reting, setReting]=useState(null)
 
+    useEffect(()=>{
+        favoriteProduct;
+        const isProductInFavorites = favoriteProduct.some(favorite => favorite.Title === product.Title);
+        setProductFavorite(isProductInFavorites);
+    }, [product.Title]);
 
-
+    
   const BasketAdd = () => {
 
-   
     productBasket.push(product);
     addProductBasket(productBasket);
     const updatedData=productBasket.map((item)=> ({
             ...item,
             myQuantity: item.myQuantity ? item.myQuantity : 1
     }));
-
     addProductBasket(updatedData)
-    console.log(productBasket)    
   };
 
-  const BasketFavorites=(indexses)=>{
+  function RatingProduct(selectedRating){
+    setReting(selectedRating)
+  }
 
-    if(isFavorite)
-    {
-        const removeFavorite = favoriteProduct.filter(
-            (product, idx) => idx !== indexses
-        );
-        addFavoriteProduct(removeFavorite)
-    }
-    else
-    {
+  const BasketFavorites= ()=>{
+
+   if(!favoriteProduct.find(favoriteTitle=>favoriteTitle.Title==Title))
+   {
     favoriteProduct.push(product);
-    addFavoriteProduct(favoriteProduct);
-    const favoritesData=favoriteProduct.map((item)=>({
-    ...item,
-    favorite: true
-    }))
-    addFavoriteProduct(favoritesData);
-    }
-    setIsFavorite(prevState => !prevState);
+   }
+   else
+   {
+    let index=favoriteProduct.findIndex(favorite=>favorite.Title === Title)
+    favoriteProduct.splice(index, 1)
+   }
+   addFavoriteProduct(favoriteProduct);
+   location.reload();
+
 }
 
-  
     return(
         <div className="product" style={{width:"400px", border:"2px solid red"}}>
             <div className="image">
@@ -81,11 +80,14 @@ function CardProduct({product, productInCart, productFavorite, indexses})
         <div className="info">
                 <h3>{Title}</h3>
                 <ul className="rating">
-                    <li><ion-icon name="star"></ion-icon></li>
-                    <li><ion-icon name="star"></ion-icon></li>
-                    <li><ion-icon name="star"></ion-icon></li>
-                    <li><ion-icon name="star"></ion-icon></li>
-                    <li><ion-icon name="star-half"></ion-icon></li>
+                   {[...Array(5)].map((rating, index)=>{
+                   const ratingValue = index + 1;
+                   const isRated = ratingValue <= reting;
+                   const starClassName = isRated ? 'star-filled' : 'star-empty';
+                   return(
+                  
+                  <li onClick={()=>RatingProduct(ratingValue)} key={index}  className={starClassName} ><ion-icon name="star"></ion-icon></li> )}
+                  )}
                 </ul>
             <div className="info-weight-description">
                 <dt>Вес: <span className="weight-product">{weight}</span></dt>
@@ -95,8 +97,8 @@ function CardProduct({product, productInCart, productFavorite, indexses})
             <span className="price">{money}<small>₽</small></span>
             <div className="context-product">
             {productFavorite ?
-            <button className="product-favorites-1" onClick={()=>BasketFavorites(indexses)} style={{color: 'red'}} >< ion-icon name="heart"  ></ion-icon></button>
-            : <button className="product-favorites-2" onClick={()=>BasketFavorites(indexses)} ><ion-icon name="heart" className="" ></ion-icon></button>
+            <button className="product-favorites-1" onClick={()=>BasketFavorites()} style={{color: 'red'}} >< ion-icon name="heart"  ></ion-icon></button>
+            : <button className="product-favorites-2" onClick={()=>BasketFavorites()} ><ion-icon name="heart" className="" ></ion-icon></button>
              }
             
             { productInCart ?

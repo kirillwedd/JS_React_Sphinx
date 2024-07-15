@@ -45,7 +45,7 @@ function CategoryProduct() {
 const filtered = dataCardProduct.filter((dataCard) =>{
   let titleFiltered = true,
       priceFiltered = true,
-  countriesFiltered = true;
+      countriesFiltered = true;
 
 if (values) {
  titleFiltered = dataCard.Title.toLowerCase().includes(values.toLowerCase());
@@ -63,7 +63,7 @@ return titleFiltered &&priceFiltered && countriesFiltered;
 });
   
   const ItemsCardProduct = filtered.map((product, index) => (
-    <CardProduct   product={product} key={index} indexses={index} productFavorite={favoriteProduct.some((item=>item.Title==product.Title))} productInCart={productBasket.some(item=>item.Title==product.Title)}>
+    <CardProduct   product={product} key={index} indexses={index}   productInCart={productBasket.some(item=>item.Title==product.Title)}>
 
     </CardProduct>
     
